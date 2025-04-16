@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Room Booking System - Dashboard</title>
+    <link rel="stylesheet" href="User_dash_styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Particle background -->
+        <div class="particle-container">
+            <canvas id="particleCanvas"></canvas>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i data-lucide="user"></i>
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div>
+                        <h3 class="user-name">USER</h3>
+                        <div class="user-status">
+                            <i data-lucide="shield"></i>
+                            <span>Premium User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="User_dash_index.html" class="nav-item active">
+                        <i data-lucide="layout"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="User_showroom.html" class="nav-item">
+                        <i data-lucide="home"></i>
+                        <span>Show Rooms</span>
+                    </a>
+                    <a href="User_All_Booking.html" class="nav-item">
+                        <i data-lucide="book-open"></i>
+                        <span>My Bookings</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <nav class="top-nav">
+                <div class="nav-left">
+                    <button class="menu-toggle" aria-label="Toggle menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="nav-logo">
+                        <i data-lucide="calendar"></i>
+                        <span>Smart Room</span>
+                    </div>
+                </div>
+                
+                <div class="nav-right">
+                    <button class="nav-button" aria-label="Notifications">
+                        <i data-lucide="bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="nav-button" aria-label="Messages">
+                        <i data-lucide="message-circle"></i>
+                    </button>
+                    <div class="nav-divider"></div>
+                    <button class="nav-button" aria-label="Help">
+                        <i data-lucide="help-circle"></i>
+                    </button>
+                    <button class="nav-button" aria-label="Settings">
+                        <i data-lucide="settings"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="text-gradient">Find, room and</span>
+                        <span class="text-gradient">Book a room</span>
+                        <span class="text-accent">Easily</span>
+                    </h1>
+             
+                    
+                </div>
+                
+                <!-- Room Slider -->
+                <div class="room-slider">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <!-- Slides will be inserted here by JavaScript -->
+                        </div>
+                        
+                        <div class="slider-controls">
+                            <button class="slider-arrow prev" aria-label="Previous slide">
+                                <i data-lucide="chevron-left"></i>
+                            </button>
+                            <div class="slider-dots">
+                                <!-- Dots will be inserted here by JavaScript -->
+                            </div>
+                            <button class="slider-arrow next" aria-label="Next slide">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="recording-badge">
+                            <i data-lucide="circle"></i>
+                            <span>RECORDING</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            </div>
+        </main>
+    </div>
+
+    <script src="User_dash_script.js"></script>
+</body>
+</html>

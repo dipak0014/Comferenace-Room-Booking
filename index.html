@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Room Portal</title>
+    <link rel="stylesheet" href="login_styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="image-section">
+                <div class="ai-overlay"></div>
+                <img src="https://img.freepik.com/free-photo/room-used-official-event_23-2151054276.jpg?uid=R111460313&ga=GA1.1.1491070804.1741600591&semt=ais_hybrid&w=740" alt="Modern Conference Room">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+                            <path d="M2 17L12 22L22 17" fill="white"/>
+                            <path d="M2 12L12 17L22 12" fill="white"/>
+                        </svg>
+                    </div>
+                    <span>Smart Room</span>
+                </div>
+                <div class="ai-particles" id="particles"></div>
+            </div>
+            <div class="form-section">
+                <div class="login-type-toggle">
+                    <button class="toggle-btn active" data-type="user">User Login</button>
+                    <button class="toggle-btn" data-type="admin">Admin Login</button>
+                </div>
+                <div class="form-container" id="userLogin">
+                    <h1>Welcome Back</h1>
+                    <p class="subtitle">Access your smart conference room</p>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <input type="text" id="username" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <input type="password" id="password" placeholder="Enter your password" required>
+                                <button type="button" class="toggle-password">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="login-button">
+                            <span>Login</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                        <div class="register-link">
+                            Don't Have An Account? <a href="#">Register Here</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-container hidden" id="adminLogin">
+                    <h1>Admin Access</h1>
+                    <p class="subtitle">Manage conference room settings</p>
+                    <form id="adminForm">
+                        <div class="form-group">
+                            <label for="adminId">Admin ID</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <input type="text" id="adminId" placeholder="Enter admin ID" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                                <button type="button" class="toggle-password">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="login-button admin-login-btn">
+                            <span>Admin Login</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="login_script.js"></script>
+</body>
+</html>

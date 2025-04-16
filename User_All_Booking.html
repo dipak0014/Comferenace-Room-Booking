@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Room Booking System</title>
+    <link rel="stylesheet" href="User_All_Booking.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Particle background -->
+        <div class="particle-container">
+            <canvas id="particleCanvas"></canvas>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i data-lucide="user"></i>
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div>
+                        <h3 class="user-name">USER</h3>
+                        <div class="user-status">
+                            <i data-lucide="shield"></i>
+                            <span>Premium User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="User_dash_index.html" class="nav-item">
+                        <i data-lucide="layout"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="User_showroom.html" class="nav-item">
+                        <i data-lucide="home"></i>
+                        <span>Show Rooms</span>
+                    </a>
+                    <a href="User_All_Booking.html" class="nav-item active">
+                        <i data-lucide="book-open"></i>
+                        <span>My Bookings</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>My Booked Rooms</h1>
+                    <p>Manage your upcoming room reservations</p>
+                </div>
+                <!-- New Booking button removed -->
+            </header>
+
+            <!-- AI Suggestion Banner removed -->
+
+            <!-- Bookings Container -->
+            <div id="bookingsContainer" class="bookings-container">
+                <!-- Bookings will be inserted here by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <script src="User_All_Booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Room Booking System</title>
+    <link rel="stylesheet" href="User_showroom.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Particle background -->
+        <div class="particle-container">
+            <canvas id="particleCanvas"></canvas>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i data-lucide="user"></i>
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div>
+                        <h3 class="user-name">USER</h3>
+                        <div class="user-status">
+                            <i data-lucide="shield"></i>
+                            <span>Premium User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="User_dash_index.html" class="nav-item">
+                        <i data-lucide="layout"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="User_showroom.html" class="nav-item active">
+                        <i data-lucide="home"></i>
+                        <span>Show Rooms</span>
+                    </a>
+                    <a href="User_All_Booking.html" class="nav-item">
+                        <i data-lucide="book-open"></i>
+                        <span>My Bookings</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <div class="navbar-left">
+                <div class="user-profile-mini">
+                    
+                   
+                </div>
+            </div>
+            <div class="navbar-center">
+                <div class="smart-room-title">
+                    <i data-lucide="calendar"></i>
+                    <span>Smart Room</span>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="navbar-actions">
+                    <button class="navbar-action-btn">
+                        <i data-lucide="bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    <button class="navbar-action-btn">
+                        <i data-lucide="message-circle"></i>
+                    </button>
+                    <button class="navbar-action-btn">
+                        <i data-lucide="help-circle"></i>
+                    </button>
+                    <button class="navbar-action-btn">
+                        <i data-lucide="settings"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Most Popular Rooms Rental Deals</h1>
+                    <p>Book our most popular conference rooms</p>
+                </div>
+            </header>
+
+            <!-- Room Grid -->
+            <div class="room-grid">
+                <!-- Rooms will be inserted here by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <script src="User_showroom.js"></script>
+</body>
+</html>

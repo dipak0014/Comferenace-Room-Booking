@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Room Booking System</title>
+    <link rel="stylesheet" href="bookroom.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Particle background -->
+        <div class="particle-container">
+            <canvas id="particleCanvas"></canvas>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i data-lucide="user"></i>
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div>
+                        <h3 class="user-name">USER</h3>
+                        <div class="user-status">
+                            <i data-lucide="shield"></i>
+                            <span>Premium User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="User_dash_index.html" class="nav-item">
+                        <i data-lucide="layout"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="User_showroom.html" class="nav-item">
+                        <i data-lucide="home"></i>
+                        <span>Show Rooms</span>
+                    </a>
+                    <a href="User_All_Booking.html" class="nav-item">
+                        <i data-lucide="book-open"></i>
+                        <span>My Bookings</span>
+                    </a>
+                   
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <div class="navbar-left">
+                <div class="user-profile-mini">
+                    <!-- Left empty as in the original -->
+                </div>
+            </div>
+            <div class="navbar-center">
+                <div class="smart-room-title">
+                    <i data-lucide="calendar"></i>
+                    <span>Smart Room</span>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="navbar-actions">
+                    <button class="navbar-action-btn" id="notificationBtn">
+                        <i data-lucide="bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    <button class="navbar-action-btn">
+                        <i data-lucide="message-circle"></i>
+                    </button>
+                    <button class="navbar-action-btn">
+                        <i data-lucide="help-circle"></i>
+                    </button>
+                    <button class="navbar-action-btn" id="settingsBtn">
+                        <i data-lucide="settings"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-container">
+                <div class="content-flex">
+                    <!-- Room Card -->
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img id="roomImage" src="https://img.freepik.com/free-photo/business-meeting-room-high-rise-office-building_105762-1717.jpg" alt="Room Image">
+                        </div>
+                        <div id="room-number" class="room-no"></div>
+                        <div class="room-content">
+                            <h2 id="roomName" class="room-title"></h2>
+                            <div class="room-details">
+                                <p id="capacity" class="room-capacity">
+                                    <i data-lucide="users" class="icon-small"></i>
+                                    <span id="capacityText"></span>
+                                </p>
+                                <p id="location" class="room-location">
+                                    <i data-lucide="map-pin" class="icon-small"></i>
+                                    <span id="locationText"></span>
+                                </p>
+                            </div>
+                            <button id="bookRoomBtn" class="book-button">Book Room</button>
+                        </div>
+                    </div>
+
+                    <!-- Room Information -->
+                    <div class="room-info">
+                        <h1 id="infoTitle" class="info-title"></h1>
+                        
+                        <div class="rating-box">
+                            <span class="star">⭐</span>
+                            <span class="rating">6.2/10 (11.4K Votes) ></span>
+                        </div>
+
+                        <div class="location-badges">
+                            <div class="badge" data-location="MUMBAI">
+                                <i data-lucide="map-pin" class="icon-small"></i>
+                                MUMBAI
+                            </div>
+                            <div class="badge active" data-location="PUNE">
+                                <i data-lucide="map-pin" class="icon-small"></i>
+                                PUNE
+                            </div>
+                            <div class="badge" data-location="SATARA">
+                                <i data-lucide="map-pin" class="icon-small"></i>
+                                SATARA
+                            </div>
+                        </div>
+
+                        <div class="star-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                        </div>
+
+                        <div class="date-selection" id="dateSelection"></div>
+
+                        <div class="time-slots">
+                            <div class="time-slot available" data-time="8 AM - 11 AM">
+                                <div class="time">8 AM - 11 AM</div>
+                                <div class="status available">Available</div>
+                            </div>
+                            <div class="time-slot available" data-time="12 PM - 3 PM">
+                                <div class="time">12 PM - 3 PM</div>
+                                <div class="status available">Available</div>
+                            </div>
+                            <div class="time-slot available" data-time="4 PM - 7 PM">
+                                <div class="time">4 PM - 7 PM</div>
+                                <div class="status available">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="bookroom.js"></script>
+</body>
+</html>

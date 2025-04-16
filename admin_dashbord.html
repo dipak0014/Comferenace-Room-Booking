@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #0f172a; /* Dark blue background */
+            color: #f8fafc;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 280px;
+            background-color: #1e293b; /* Darker blue for sidebar */
+            color: white;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            border-right: 1px solid #334155;
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .admin-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #0ea5e9; /* Cyan color */
+            margin-right: 15px;
+            padding: 5px;
+        }
+
+        .admin-profile {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .admin-status {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #0ea5e9; /* Cyan color */
+            margin-right: 6px;
+        }
+
+        .menu-section {
+            font-size: 12px;
+            color: #64748b;
+            padding: 15px 20px 5px;
+            margin-top: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .menu-item i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            background-color: #334155;
+            color: white;
+        }
+
+        .menu-item.active {
+            background: linear-gradient(to right, #3b82f6, #0ea5e9); /* Blue to cyan gradient */
+            color: white;
+        }
+
+        /* AI Assistant Section */
+        .ai-assistant {
+            margin: 20px 15px;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: auto;
+        }
+
+        .ai-assistant-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .ai-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #0ea5e9;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .ai-title {
+            color: #0ea5e9;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .ai-message {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .analyze-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #334155;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        .analyze-btn:hover {
+            background-color: #475569;
+        }
+
+        .analyze-btn i {
+            margin-right: 8px;
+            font-size: 12px;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title i {
+            margin-right: 12px;
+            color: #94a3b8;
+        }
+
+        .page-title h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .top-bar-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            position: relative;
+            margin-right: 15px;
+        }
+
+        .search-bar input {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background-color: #1e293b;
+            color: white;
+            width: 220px;
+            font-size: 14px;
+        }
+
+        .search-bar input::placeholder {
+            color: #64748b;
+        }
+
+        .action-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-icon:hover {
+            background-color: #334155;
+        }
+
+        .notification-badge {
+            position: relative;
+        }
+
+        .notification-badge::after {
+            content: "1";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #0ea5e9;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Room preview card */
+        .room-preview-card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        .room-image-slider {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .slider-item {
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .room-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .slider-pagination {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-dot.active {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(14, 165, 233, 0.7);
+        }
+
+        .slider-btn.prev {
+            left: 15px;
+        }
+
+        .slider-btn.next {
+            right: 15px;
+        }
+
+        .recording-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #0ea5e9;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .recording-badge i {
+            margin-right: 5px;
+            color: #0ea5e9;
+        }
+
+        .room-tabs {
+            display: flex;
+            padding: 15px 20px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .room-tab {
+            margin-right: 25px;
+            padding: 5px 0;
+            color: #94a3b8;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .room-tab:hover {
+            color: #f8fafc;
+        }
+
+        .room-tab.active {
+            color: #0ea5e9;
+            font-weight: 500;
+        }
+
+        .room-tab.active::after {
+            content: "";
+            position: absolute;
+            bottom: -16px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #3b82f6, #0ea5e9);
+        }
+
+        /* Stats cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stats-card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(14, 165, 233, 0.15);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+
+        .chart-container {
+            padding: 20px;
+            height: 150px;
+        }
+
+        .blue-chart {
+            background: linear-gradient(to right, #3b82f6, #0ea5e9);
+            color: white;
+        }
+
+        .green-chart {
+            background: linear-gradient(to right, #10b981, #0ea5e9);
+            color: white;
+        }
+
+        .chart {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 70px;
+            padding-top: 20px;
+        }
+
+        .chart-bar {
+            width: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+        }
+
+        .stats-info {
+            display: flex;
+            padding: 15px 20px;
+            align-items: center;
+        }
+
+        .stats-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .blue-icon {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .green-icon {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .stats-details {
+            flex: 1;
+        }
+
+        .stats-title {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+
+        .stats-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #f8fafc;
+            text-align: right;
+        }
+
+        .stats-change {
+            font-size: 13px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .positive-change {
+            color: #10b981;
+        }
+
+        /* Create Room Button */
+        .create-room-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(to right, #3b82f6, #0ea5e9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .create-room-btn:hover {
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .create-room-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: auto;
+            border-top: 1px solid #334155;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-left i {
+            color: #0ea5e9;
+            margin: 0 5px;
+        }
+
+        .footer-right a {
+            color: #64748b;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.2s;
+        }
+
+        .footer-right a:hover {
+            color: #f8fafc;
+        }
+
+        @keyframes autoSlide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-100%); }
+            45% { transform: translateX(-100%); }
+            50% { transform: translateX(-200%); }
+            70% { transform: translateX(-200%); }
+            75% { transform: translateX(-300%); }
+            95% { transform: translateX(-300%); }
+            100% { transform: translateX(-400%); }
+        }
+
+        .auto-slider .slider-container {
+            animation: autoSlide 20s infinite;
+        }
+
+        .auto-slider:hover .slider-container {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-header">
+            <img src="https://cdn-icons-png.flaticon.com/128/17725/17725705.png" alt="Admin">
+            <div class="admin-profile">
+                <h2>ADMIN</h2>
+                <div class="admin-status">
+                    <div class="status-dot"></div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links - Reordered as requested -->
+        <a href="admin_dashbord.html" class="menu-item active">
+            <i class="fas fa-th-large"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="admin_createroom.html" class="menu-item">
+            <i class="fas fa-plus-circle"></i>
+            <span>Create New Room</span>
+        </a>
+
+        <a href="admin_showrooms.html" class="menu-item">
+            <i class="fas fa-list"></i>
+            <span>Show Rooms</span>
+        </a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="page-title">
+                <i class="fas fa-home"></i>
+                <h1>Admin Dashboard</h1>
+            </div>
+
+            <div class="top-bar-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search here">
+                </div>
+                <div class="action-icon">
+                    <i class="fas fa-bell notification-badge"></i>
+                </div>
+                <div class="action-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Preview Card with Image Slider -->
+        <div class="room-preview-card">
+            <div class="room-image-slider auto-slider">
+                <div class="slider-container">
+                    <div class="slider-item">
+                        <img src="N-4.png" alt="Conference Room 1" class="room-image">
+                        <div class="recording-badge">
+                            <i class="fas fa-circle"></i> RECORDING
+                        </div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="n-7.png" alt="Conference Room 2" class="room-image">
+                    </div>
+                    <div class="slider-item">
+                        <img src="N-2.png" alt="Conference Room 3" class="room-image">
+                    </div>
+                    <div class="slider-item">
+                        <img src="N-1.png" alt="Conference Room 4" class="room-image">
+                    </div>
+                    <div class="slider-item">
+                        <img src="N-5.png" alt="Conference Room 5" class="room-image">
+                    </div>
+                </div>
+                <div class="slider-pagination">
+                    <div class="slider-dot active" data-index="0"></div>
+                    <div class="slider-dot" data-index="1"></div>
+                    <div class="slider-dot" data-index="2"></div>
+                    <div class="slider-dot" data-index="3"></div>
+                    <div class="slider-dot" data-index="4"></div>
+                </div>
+                <button class="slider-btn prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="room-tabs">
+                <div class="room-tab active">Cameras</div>
+                <div class="room-tab">Projector</div>
+                <div class="room-tab">Whiteboard</div>
+                <div class="room-tab">Function</div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <!-- Rooms Stats -->
+            <div class="stats-card">
+                <div class="chart-container blue-chart">
+                    <div class="chart">
+                        <div class="chart-bar" style="height: 60%;"></div>
+                        <div class="chart-bar" style="height: 20%;"></div>
+                        <div class="chart-bar" style="height: 10%;"></div>
+                        <div class="chart-bar" style="height: 40%;"></div>
+                        <div class="chart-bar" style="height: 15%;"></div>
+                        <div class="chart-bar" style="height: 25%;"></div>
+                        <div class="chart-bar" style="height: 50%;"></div>
+                    </div>
+                    <div class="chart-labels">
+                        <span>M</span>
+                        <span>T</span>
+                        <span>W</span>
+                        <span>T</span>
+                        <span>F</span>
+                        <span>S</span>
+                        <span>S</span>
+                    </div>
+                </div>
+                <div class="stats-info">
+                    <div class="stats-icon blue-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="stats-details">
+                        <div class="stats-title">Total Rooms</div>
+                        <div class="stats-value">10</div>
+                    </div>
+                </div>
+                <div class="stats-change positive-change">
+                    <i class="fas fa-arrow-up"></i> 10+ than last week
+                </div>
+            </div>
+
+            <!-- Bookings Stats -->
+            <div class="stats-card">
+                <div class="chart-container green-chart">
+                    <div class="chart">
+                        <div class="chart-bar" style="height: 50%;"></div>
+                        <div class="chart-bar" style="height: 15%;"></div>
+                        <div class="chart-bar" style="height: 10%;"></div>
+                        <div class="chart-bar" style="height: 30%;"></div>
+                        <div class="chart-bar" style="height: 60%;"></div>
+                        <div class="chart-bar" style="height: 10%;"></div>
+                        <div class="chart-bar" style="height: 40%;"></div>
+                    </div>
+                    <div class="chart-labels">
+                        <span>M</span>
+                        <span>T</span>
+                        <span>W</span>
+                        <span>T</span>
+                        <span>F</span>
+                        <span>S</span>
+                        <span>S</span>
+                    </div>
+                </div>
+                <div class="stats-info">
+                    <div class="stats-icon green-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stats-details">
+                        <div class="stats-title">Total Bookings</div>
+                        <div class="stats-value">200</div>
+                    </div>
+                </div>
+                <div class="stats-change positive-change">
+                    <i class="fas fa-arrow-up"></i> 199+ than last week
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-left">
+                © 2022, made with <i class="fas fa-heart"></i> by Creative Tim for a better web.
+            </div>
+            <div class="footer-right">
+                <a href="#">Creative Tim</a>
+                <a href="#">About Us</a>
+                <a href="#">Blog</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Simulate loading spinner
+            setTimeout(() => {
+                const loadingSpinner = document.querySelector('.loading-spinner');
+                if (loadingSpinner) {
+                    loadingSpinner.style.display = 'none';
+                }
+            }, 800);
+
+            // AI Assistant Animation
+            const analyzeBtn = document.querySelector('.analyze-btn');
+            if (analyzeBtn) {
+                analyzeBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-check"></i> Analysis Complete';
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-bolt"></i> Analyze Schedule';
+                        }, 2000);
+                    }, 1500);
+                });
+            }
+
+            // Image Slider Functionality
+            const sliderContainer = document.querySelector('.slider-container');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.slider-btn.prev');
+            const nextBtn = document.querySelector('.slider-btn.next');
+            const totalSlides = document.querySelectorAll('.slider-item').length;
+            let currentSlide = 0;
+
+            // Update slider dots
+            function updateDots() {
+                sliderDots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            // Move to specific slide
+            function goToSlide(slideIndex) {
+                if (slideIndex < 0) {
+                    slideIndex = totalSlides - 1;
+                } else if (slideIndex >= totalSlides) {
+                    slideIndex = 0;
+                }
+
+                currentSlide = slideIndex;
+                sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                updateDots();
+            }
+
+            // Event listeners for navigation
+            prevBtn.addEventListener('click', () => {
+                // Stop auto animation
+                document.querySelector('.auto-slider').classList.remove('auto-slider');
+                goToSlide(currentSlide - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                // Stop auto animation
+                document.querySelector('.auto-slider').classList.remove('auto-slider');
+                goToSlide(currentSlide + 1);
+            });
+
+            // Event listeners for dots
+            sliderDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    // Stop auto animation
+                    document.querySelector('.auto-slider').classList.remove('auto-slider');
+                    goToSlide(index);
+                });
+            });
+
+            // Pause animation on hover, resume on mouse leave
+            const sliderElement = document.querySelector('.room-image-slider');
+            sliderElement.addEventListener('mouseenter', function() {
+                this.querySelector('.slider-container').style.animationPlayState = 'paused';
+            });
+
+            sliderElement.addEventListener('mouseleave', function() {
+                if (this.classList.contains('auto-slider')) {
+                    this.querySelector('.slider-container').style.animationPlayState = 'running';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
